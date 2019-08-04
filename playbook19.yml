@@ -1,0 +1,24 @@
+---
+- name: configuring tomcat using error handling
+  hosts: all
+  tasks: 
+  - block:
+    - name: install tomcat7
+      apt: 
+       name: tomcat7
+       state: present
+    rescue: 
+    - name: install tomcat8
+      apt:
+       name: tomcat8
+       state: present
+    always: 
+    - name: check url responce
+      uri:
+       url: "{{item}}"
+      with_items:
+       - http://172.31.47.254
+       - http://172.31.40.241
+       - http://172.31.47.254
+...
+

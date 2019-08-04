@@ -1,0 +1,21 @@
+---
+- name: tagging in ansible
+  hosts: all
+  tasks:
+   - name: install tree
+     apt: 
+      name: tree
+      state: present
+     tags: 
+      tree_installation
+   - name: user creation
+     user: 
+      name: ganesh
+      password: ganesh
+     tags: 
+      user_creation
+   - name: creating a file
+     file: 
+      name: file2
+      state: touch
+...

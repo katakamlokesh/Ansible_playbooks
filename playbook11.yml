@@ -1,0 +1,15 @@
+---
+- name: instaliing software packages
+  hosts: all
+  tasks: 
+   - name: install or uninstall packages
+     apt: 
+      name: "{{item}}"
+      state: present
+      update_cache: no
+     with_items: 
+      - tree
+      - git
+      - openjdk-8-jdk
+      - maven 
+...

@@ -1,0 +1,13 @@
+---
+- name: download docker images
+  hosts: all
+  tasks: 
+   - name: download images
+     docker_image: 
+      name: "{{item}}"
+      pull: yes
+     with_items: 
+      - ubuntu
+      - registry
+      - httpd
+...

@@ -1,0 +1,12 @@
+---
+- name: creating files using hostscope variables
+  hosts: 172.31.37.9
+  tasks: 
+   - name: creating files
+     file: 
+      name:  "{{a}}"
+      state:  "{{b}}"
+      owner:  "{{c}}"
+      group:  "{{d}}"
+      mode:  "{{e}}"
+...      

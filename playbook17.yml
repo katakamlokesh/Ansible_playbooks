@@ -1,0 +1,18 @@
+---
+- name: check if a user is present or not then updating password 
+  hosts: all
+  tasks: 
+   - name: check if user present or not
+     user: 
+      name: tiru
+     register: results
+   - name: displaying output of stat module
+     debug: 
+      var: results
+   - name: updating password for user 
+     user: 
+      name: tiru
+      password: tiru
+     when: 
+      results.changed == true
+...

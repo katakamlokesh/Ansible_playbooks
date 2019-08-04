@@ -1,0 +1,23 @@
+---
+- name: create ci-cd environment using ansible and docker
+  hosts: all
+  tasks: 
+   - name: start jenkins as a container
+     docker_container: 
+      image: jenkins
+      name: devserver
+      ports: 
+       - 5050:8080
+
+   - name: start tomcat as a container (qaserver and prodserver)
+     docker_container: 
+      image: tomcat
+      name: "{{item.a}}"
+      ports: 
+       - "{{item.b}}"
+      links: 
+       - devserver:jenkins
+     with_items:
+      - {a: qaserver,b: "6060:8080"}
+      - {a: prodserver,b: "7070:8080"}
+...

@@ -1,0 +1,20 @@
+---
+- name: start mysql container and link with wordpress container
+  hosts: all
+  tasks: 
+   - name: start mysql
+     docker_container: 
+      image: mysql:5
+      name: mydb
+      env: 
+       MYSQL_ROOT_PASSWORD: katakam007
+
+   - name: start wordpress as container
+     docker_container:
+      image: wordpress       
+      name: mywordpress
+      ports: 
+       - 9999:80
+      links: 
+       - mydb:mysql
+...

@@ -1,0 +1,26 @@
+---
+- name: configuring apache2
+  hosts: all
+  tasks: 
+  - name: installing apache2
+    apt:
+     name: apache2
+     state: present 
+  - name: edit index.html file
+    copy: 
+     content: "welcome to devops\n"
+     dest: /var/www/html/index.html
+  - name: restarting apache2
+    service: 
+     name: apache2
+     state: restarted
+  - name: checking responce of server1
+    uri: 
+     url: http://172.31.47.254
+  - name: checking responce of server2
+    uri:
+     url: http://172.31.40.241
+  - name: checking responce of server3
+    uri:
+     url: http://172.31.47.254
+...   

@@ -1,0 +1,19 @@
+---
+- name: starting tomcat as container and stopping and  removing
+  hosts: all
+  tasks: 
+   - name: working on tomcat 
+     docker_container: 
+      image: tomcat
+      name: webserver
+      ports: 
+       - 7777:8080
+   - name: stopping tomcat
+     docker_container: 
+      name: webserver
+      state: stopped
+   - name: removing container
+     docker_container: 
+      name: webserver
+      state: absent
+...      

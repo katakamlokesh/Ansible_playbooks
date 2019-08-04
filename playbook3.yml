@@ -1,0 +1,15 @@
+---
+- name: creating users and copying files into user
+  hosts: all
+  tasks: 
+  - name: creating user
+    user: 
+     name: tirupati
+     password: tiru123
+     home: /home/tirupati
+     uid: 4321
+  - name: coping files into user
+    file: 
+     name: /home/tirupati/file1
+     state: touch
+...     

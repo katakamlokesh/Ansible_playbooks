@@ -1,0 +1,14 @@
+---
+- name: implenting when conditions
+  hosts: all
+  vars: 
+   - a: 10
+  tasks: 
+   - name: install git
+     apt: 
+      name: git
+      state: present
+      update_cache: yes
+     when: 
+      a == 10
+...

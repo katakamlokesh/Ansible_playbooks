@@ -1,0 +1,13 @@
+---
+- name: calling multiple child plabooks for tomcat8
+  hosts: all
+  tasks: 
+   - name: calling playbooks for tomcat8
+     include: "{{item}}"
+     with_items: 
+      - install_tomcat8.yml
+      - tomat-users.xml
+      - replace_port.yml
+      - restart.yml
+      - url_response.yml
+...

@@ -1,0 +1,27 @@
+---
+- name: configuring apache2
+  hosts: all
+  tasks: 
+  - name: installing apache2
+    apt:
+     name: apache2
+     state: present
+    notify: check url response 
+  - name: edit index.html file
+    copy: 
+     content: "welcome to devops\n"
+     dest: /var/www/html/index.html
+    notify: restart apache2
+  handlers:
+  - name: restart apache2
+    service: 
+     name: apache2
+     state: restarted
+  - name: check url responce
+    uri: 
+     url: "{{item}}"
+    with_items: 
+     - http://172.31.47.254
+     - http://172.31.40.241
+     - http://172.31.47.254
+...   

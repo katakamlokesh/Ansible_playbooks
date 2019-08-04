@@ -1,0 +1,9 @@
+---
+- name: check url responce
+  uri:
+   url: "{{item}}"
+  with_items:
+   - http://172.31.47.254:9090
+   - http://172.31.40.241:9090
+   - http://172.31.47.254:9090
+...

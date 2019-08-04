@@ -1,0 +1,16 @@
+---
+- name: fetch data from node
+  hosts: 172.31.47.254
+  tasks:
+   - name:
+     fetch: 
+      src: /etc/group
+      dest: /home/ubuntu
+- name: copying to node2
+  hosts: 172.31.40.241
+  tasks:
+   - name: copying
+     copy: 
+      src: /home/ubuntu/172.31.47.254/etc/group
+      dest: /tmp
+...
